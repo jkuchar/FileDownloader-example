@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "796218680793d17204bdbba0d6a090da",
+    "hash": "79cd70409d54e94441caa29fb9dcaf8c",
     "packages": [
         {
             "name": "jkuchar/bigfiletools",
@@ -46,7 +46,7 @@
         },
         {
             "name": "jkuchar/filedownloader",
-            "version": "dev-master",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jkuchar/FileDownloader.git",
@@ -1216,9 +1216,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jkuchar/filedownloader": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "platform": {
         "php": ">= 5.3.0"
