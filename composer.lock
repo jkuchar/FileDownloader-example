@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f5d4cbb61449504c42eb852bc978687d",
+    "hash": "796218680793d17204bdbba0d6a090da",
     "packages": [
         {
             "name": "jkuchar/bigfiletools",
@@ -50,15 +50,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jkuchar/FileDownloader.git",
-                "reference": "fc147853f4418c2297694d1e6557b7d540799e52"
+                "reference": "70d2137cbee552cc0fcb876eb4d01ca33f6ab4cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jkuchar/FileDownloader/zipball/fc147853f4418c2297694d1e6557b7d540799e52",
-                "reference": "fc147853f4418c2297694d1e6557b7d540799e52",
+                "url": "https://api.github.com/repos/jkuchar/FileDownloader/zipball/70d2137cbee552cc0fcb876eb4d01ca33f6ab4cd",
+                "reference": "70d2137cbee552cc0fcb876eb4d01ca33f6ab4cd",
                 "shasum": ""
             },
             "require": {
+                "jkuchar/bigfiletools": "~1.1",
                 "nette/nette": ">= 2.0",
                 "php": ">= 5.3.0"
             },
@@ -81,7 +82,7 @@
                 }
             ],
             "description": "Addon makes controlled downloads of files peace of cake. It supports client reconnections, segmented downloading, files over 4GB, automatic mime-type detection and special characters in file names. If you need to control download speed you are on the right site.",
-            "time": "2014-09-18 12:27:50"
+            "time": "2014-09-18 13:07:22"
         },
         {
             "name": "latte/latte",
