@@ -11,8 +11,8 @@
 		}
 	],
 	"require": {
-		"php": ">= 5.3.0",
-		"nette/nette": ">= 2.0",
-		"jkuchar/filedownloader": "~1.2.0"
+		"php": ">=5.6",
+		"nette/nette": "~2.4",
+		"jkuchar/filedownloader": "~2.0.0-rc"
 	}
 }
