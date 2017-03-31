@@ -47,7 +47,7 @@ if(IsSet($_GET['logConsole']))
 	require 'logConsole.php';
 
 use FileDownloader\Downloader\AdvancedDownloader;
-use FileDownloader\FDTools;
+use FileDownloader\Tools;
 use FileDownloader\FileDownload;
 use Nette\Diagnostics\Debugger;
 use Nette\Forms\Form;
@@ -57,26 +57,26 @@ $f = new Form('upload-form');
 $f->getElementPrototype()->id = 'frm';
 $f->setMethod('GET');
 $f->addSelect('speed', 'Speed',array(
-	1                     => '1byte/s',
-	50                    => '50bytes/s',
-	512                   => '512bytes/s',
-	1*FDTools::KILOBYTE   => '1kb/s',
-	5*FDTools::KILOBYTE   => '5kb/s',
-	20*FDTools::KILOBYTE  => '20kb/s',
-	32*FDTools::KILOBYTE  => '32kb/s',
-	50*FDTools::KILOBYTE  => '50kb/s',
-	64*FDTools::KILOBYTE  => '64kb/s',
-	100*FDTools::KILOBYTE => '100kb/s',
-	128*FDTools::KILOBYTE => '128kb/s',
-	200*FDTools::KILOBYTE => '200kb/s',
-	256*FDTools::KILOBYTE => '256kb/s',
-	300*FDTools::KILOBYTE => '300kb/s',
-	512*FDTools::KILOBYTE => '512kb/s',
-	1*FDTools::MEGABYTE   => '1mb/s',
-	2*FDTools::MEGABYTE   => '2mb/s',
-	5*FDTools::MEGABYTE   => '5mb/s',
-	10*FDTools::MEGABYTE  => '10mb/s',
-	0                     => 'Unlimited'
+	1                   => '1byte/s',
+	50                  => '50bytes/s',
+	512                 => '512bytes/s',
+	1*Tools::KILOBYTE   => '1kb/s',
+	5*Tools::KILOBYTE   => '5kb/s',
+	20*Tools::KILOBYTE  => '20kb/s',
+	32*Tools::KILOBYTE  => '32kb/s',
+	50*Tools::KILOBYTE  => '50kb/s',
+	64*Tools::KILOBYTE  => '64kb/s',
+	100*Tools::KILOBYTE => '100kb/s',
+	128*Tools::KILOBYTE => '128kb/s',
+	200*Tools::KILOBYTE => '200kb/s',
+	256*Tools::KILOBYTE => '256kb/s',
+	300*Tools::KILOBYTE => '300kb/s',
+	512*Tools::KILOBYTE => '512kb/s',
+	1*Tools::MEGABYTE   => '1mb/s',
+	2*Tools::MEGABYTE   => '2mb/s',
+	5*Tools::MEGABYTE   => '5mb/s',
+	10*Tools::MEGABYTE  => '10mb/s',
+	0                   => 'Unlimited'
 ));
 
 $f->addText('filename', 'Filename')

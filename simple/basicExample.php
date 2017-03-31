@@ -44,6 +44,14 @@ require_once __DIR__ . '/../load.php'; // Loads nette
 
 use FileDownloader\FileDownload;
 
-FileDownload::getInstance()
-	->setSourceFile('source.txt')
-	->download();
+$downloader = new \FileDownloader\Downloader\AdvancedDownloader();
+
+$request = \Nette\Environment::getHttpRequest();
+$response = \Nette\Environment::getHttpResponse();
+
+$downloader->download(
+	new FileDownload('source.txt'),
+	$request,
+	$response
+);
+

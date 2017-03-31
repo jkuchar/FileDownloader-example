@@ -1,7 +1,7 @@
 <?php
 
-use FileDownloader\AppFileDownload;
-use FileDownloader\FDTools;
+use FileDownloader\DownloadResponse;
+use FileDownloader\Tools;
 
 /**
  * My Application
@@ -21,31 +21,31 @@ use FileDownloader\FDTools;
 class DownloadPresenter extends BasePresenter {
 
 	function handleDownloadClassic() {
-		$fileDownload = new AppFileDownload($this);
+		$fileDownload = new DownloadResponse($this);
 		$fileDownload->sourceFile = __FILE__;
-		$fileDownload->speedLimit = 5*FDTools::KILOBYTE;
+		$fileDownload->speedLimit = 5*Tools::KILOBYTE;
 		$fileDownload->download();
 	}
 
 	function handleDownloadFluent() {
-		AppFileDownload::getInstance($this)
+		DownloadResponse::getInstance($this)
 			->setSourceFile(__FILE__)
-			->setSpeedLimit(5*FDTools::KILOBYTE)
+			->setSpeedLimit(5*Tools::KILOBYTE)
 			->download();
 	}
 
 	function handleDownloadClassicSendResponse() {
-		$fileDownload = new AppFileDownload($this);
+		$fileDownload = new DownloadResponse($this);
 		$fileDownload->sourceFile = __FILE__;
-		$fileDownload->speedLimit = 5*FDTools::KILOBYTE;
+		$fileDownload->speedLimit = 5*Tools::KILOBYTE;
 		$this->sendResponse($fileDownload);
 	}
 
 	function handleDownloadFluentSendResponse() {
 		$this->sendResponse(
-			AppFileDownload::getInstance($this)
+			DownloadResponse::getInstance($this)
 			->setSourceFile(__FILE__)
-			->setSpeedLimit(5*FDTools::KILOBYTE)
+			->setSpeedLimit(5*Tools::KILOBYTE)
 		);
 	}
 

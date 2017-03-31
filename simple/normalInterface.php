@@ -40,15 +40,14 @@
 
 define('APP_DIR', __DIR__);
 
-require_once '../load.php';
+require_once __DIR__ . '/../load.php';
 
-use FileDownloader\FDTools;
+use FileDownloader\Tools;
 use FileDownloader\FileDownload;
 
 /* Interface with getters and setters */
-$file = new FileDownload;
-$file->sourceFile = 'source.txt';
-$file->speedLimit = 5*FDTools::BYTE;
+$file = new FileDownload('source.txt');
+$file->speedLimit = 5*Tools::BYTE;
 
 //$file->transferFileName = "test.txt";
 //$file->mimeType = "plain/text";
@@ -64,4 +63,4 @@ $file->speedLimit = 5*FDTools::BYTE;
 //$file->onNewTransferStart[]         = "onNewTransferStart";
 
 // Start download
-$file->download();
+(new \FileDownloader\Downloader\AdvancedDownloader())->download($file, \Nette\Environment::getHttpRequest(), \Nette\Environment::getHttpResponse());
