@@ -38,99 +38,99 @@
  */
 
 
-define("APP_DIR",dirname(__FILE__));
+define('APP_DIR', __DIR__);
 
-require_once "../load.php";
-require_once "example_library.php";
+require_once '../load.php';
+require_once 'example_library.php';
 
-if(IsSet($_GET["logConsole"]))
-	require "logConsole.php";
+if(IsSet($_GET['logConsole']))
+	require 'logConsole.php';
 
 use FileDownloader\Downloader\AdvancedDownloader;
-use FileDownloader\FDTools;
+use FileDownloader\Tools;
 use FileDownloader\FileDownload;
 use Nette\Diagnostics\Debugger;
 use Nette\Forms\Form;
 
 // Generate form
-$f = new Form("upload-form");
-$f->getElementPrototype()->id = "frm";
-$f->setMethod("GET");
-$f->addSelect("speed", "Speed",array(
-	1                     =>"1byte/s", 
-	50                    =>"50bytes/s",
-	512                   =>"512bytes/s",
-	1*FDTools::KILOBYTE   =>"1kb/s",
-	5*FDTools::KILOBYTE   =>"5kb/s",
-	20*FDTools::KILOBYTE  =>"20kb/s",
-	32*FDTools::KILOBYTE  =>"32kb/s",
-	50*FDTools::KILOBYTE  =>"50kb/s",
-	64*FDTools::KILOBYTE  =>"64kb/s",
-	100*FDTools::KILOBYTE =>"100kb/s",
-	128*FDTools::KILOBYTE =>"128kb/s",
-	200*FDTools::KILOBYTE =>"200kb/s",
-	256*FDTools::KILOBYTE =>"256kb/s",
-	300*FDTools::KILOBYTE =>"300kb/s",
-	512*FDTools::KILOBYTE =>"512kb/s",
-	1*FDTools::MEGABYTE   =>"1mb/s",
-	2*FDTools::MEGABYTE   =>"2mb/s",
-	5*FDTools::MEGABYTE   =>"5mb/s",
-	10*FDTools::MEGABYTE  =>"10mb/s",
-	0                     =>"Unlimited"
+$f = new Form('upload-form');
+$f->getElementPrototype()->id = 'frm';
+$f->setMethod('GET');
+$f->addSelect('speed', 'Speed',array(
+	1                   => '1byte/s',
+	50                  => '50bytes/s',
+	512                 => '512bytes/s',
+	1*Tools::KILOBYTE   => '1kb/s',
+	5*Tools::KILOBYTE   => '5kb/s',
+	20*Tools::KILOBYTE  => '20kb/s',
+	32*Tools::KILOBYTE  => '32kb/s',
+	50*Tools::KILOBYTE  => '50kb/s',
+	64*Tools::KILOBYTE  => '64kb/s',
+	100*Tools::KILOBYTE => '100kb/s',
+	128*Tools::KILOBYTE => '128kb/s',
+	200*Tools::KILOBYTE => '200kb/s',
+	256*Tools::KILOBYTE => '256kb/s',
+	300*Tools::KILOBYTE => '300kb/s',
+	512*Tools::KILOBYTE => '512kb/s',
+	1*Tools::MEGABYTE   => '1mb/s',
+	2*Tools::MEGABYTE   => '2mb/s',
+	5*Tools::MEGABYTE   => '5mb/s',
+	10*Tools::MEGABYTE  => '10mb/s',
+	0                   => 'Unlimited'
 ));
 
-$f->addText("filename", "Filename")
-	->addRule(Form::FILLED, "You must fill name!");
+$f->addText('filename', 'Filename')
+	->addRule(Form::FILLED, 'You must fill name!');
 
-$f->addSelect("size", "Size", array(
-	1=>"1MB",
-	4=>"4MB",
-	8=>"8MB",
-	16=>"16MB",
-	32=>"32MB",
-	64=>"64MB",
-	128=>"128MB",
-	256=>"256MB",
-	512=>"512MB",
+$f->addSelect('size', 'Size', array(
+	1=> '1MB',
+	4=> '4MB',
+	8=> '8MB',
+	16=> '16MB',
+	32=> '32MB',
+	64=> '64MB',
+	128=> '128MB',
+	256=> '256MB',
+	512=> '512MB',
 ));
 
-$f->addSelect("log", "Log called events?",array(
-	0=>"No",
-	1=>"Yes (may cause CPU load)",
+$f->addSelect('log', 'Log called events?',array(
+	0=> 'No',
+	1=> 'Yes (may cause CPU load)',
 ));
 
-$f->addSubmit("download", "Download!");
+$f->addSubmit('download', 'Download!');
 
 $f->setDefaults(array(
-	"speed"=>50,
-	"filename"=>"Some horrible file name - ěščřžýáíé.bin",
-	"size"=>8,
-	"log"=>1,
+	'speed'    =>50,
+	'filename' => 'Some horrible file name - ěščřžýáíé.bin',
+	'size'     =>8,
+	'log'      =>1,
 ));
 
 if($f->isSubmitted() and $f->isValid()) {
 	Debugger::enable(Debugger::PRODUCTION); // Log errors to file!
 	$val = $f->getValues();
-	$location = dirname(__FILE__)."/cache/test-".$val["size"]."MB.tmp";
-	if(!file_exists($location)) generateFile($location, $val["size"]*1024);
+	$location = __DIR__ . '/cache/test-' .$val['size']. 'MB.tmp';
+	if(!file_exists($location)) generateFile($location, $val['size']*1024);
 
 	/* Interface with getters and setters */
 	$file = new FileDownload;
 	$file->sourceFile = $location;
-	$file->transferFileName = $val["filename"];
-	$file->speedLimit = (int)$val["speed"];
+	$file->transferFileName = $val['filename'];
+	$file->speedLimit = (int)$val['speed'];
 	//$file->mimeType = $val["mimeType"];
 
 	/* Functions defined in example_library.php */
-	if($val["log"]==1) {
-		$file->onBeforeDownloaderStarts[]   = "onBeforeDownloaderStarts";
-		$file->onBeforeOutputStarts[]       = "onBeforeOutputStarts";
-		$file->onStatusChange[]             = "onStatusChange";
-		$file->onComplete[]                 = "onComplete";
-		$file->onConnectionLost[]           = "onConnectionLost";
-		$file->onAbort[]                    = "onAbort";
-		$file->onTransferContinue[]         = "onTransferContinue";
-		$file->onNewTransferStart[]         = "onNewTransferStart";
+	if($val['log']==1) {
+		$file->onBeforeDownloaderStarts[]   = 'onBeforeDownloaderStarts';
+		$file->onBeforeOutputStarts[]       = 'onBeforeOutputStarts';
+		$file->onStatusChange[]             = 'onStatusChange';
+		$file->onComplete[]                 = 'onComplete';
+		$file->onConnectionLost[]           = 'onConnectionLost';
+		$file->onAbort[]                    = 'onAbort';
+		$file->onTransferContinue[]         = 'onTransferContinue';
+		$file->onNewTransferStart[]         = 'onNewTransferStart';
 	}
 	$file->download();
 
@@ -172,7 +172,7 @@ if($f->isSubmitted() and $f->isValid()) {
 		/* Compatibility check -> makes warning */
 		$adownloader = new AdvancedDownloader;
 		if(!$adownloader->isCompatible(FileDownload::getInstance())) {
-			echo "<div style=\"background-color: red;color: white;font-weight: bold;\">Your system is not compatible with AdvancedDownloader (time limit is not zero) -> now running in compatibility mode! All fetures will NOT be available.</div>";
+			echo '<div style="background-color: red;color: white;font-weight: bold;">Your system is not compatible with AdvancedDownloader (time limit is not zero) -> now running in compatibility mode! All fetures will NOT be available.</div>';
 		}
 
 		echo $f;

@@ -13,8 +13,8 @@ use Nette\Templating\Helpers;
  * @param int $size in kb
  */
 function generateFile($location,$size) {
-	$fp = fopen($location,"wb");
-	$toWrite = "";
+	$fp = fopen($location, 'wb');
+	$toWrite = '';
 	for($y=0;$y<1024;$y++) { // One kb of content
 		$toWrite .= chr(rand(0,255));
 	}
@@ -25,26 +25,26 @@ function generateFile($location,$size) {
 }
 
 function log_write($data,FileDownload $file,IDownloader $downloader) {
-	$cache = Environment::getCache("FileDownloader/log");
+	$cache = Environment::getCache('FileDownloader/log');
 	$log = array();
 	$tid = (string)$file->getTransferId();
-	if(!IsSet($cache["registry"])) $cache["registry"] = array();
-	$reg = $cache["registry"];
+	if(!IsSet($cache['registry'])) $cache['registry'] = array();
+	$reg = $cache['registry'];
 	$reg[$tid] = true;
-	$cache["registry"] = $reg;
+	$cache['registry'] = $reg;
 	if(IsSet($cache[$tid])) $log = $cache[$tid];
 
-	Debugger::fireLog("Data: ".$data."; ".$downloader->end);
+	Debugger::fireLog('Data: ' .$data. '; ' .$downloader->end);
 
 	
 	
-	$data = $data.": ".Helpers::bytes($file->transferredBytes)." <->; ";
+	$data = $data. ': ' .Helpers::bytes($file->transferredBytes). ' <->; ';
 	if($downloader instanceof AdvancedDownloader and $downloader->isInitialized()) {
-		$data .= "position: ".Helpers::bytes($downloader->position)."; ";
+		$data .= 'position: ' .Helpers::bytes($downloader->position). '; ';
 		//$data .= "length: ".Helpers::bytes($downloader->length)."; ";
-		$data .= "http-range: ".Helpers::bytes($downloader->start)."-".Helpers::bytes($downloader->end)."; ";
-		$data .= "progress (con: ".round($file->transferredBytes/$downloader->end*100)."% X ";
-		$data .= "file: ".round($downloader->position/$file->sourceFileSize*100)."%)";
+		$data .= 'http-range: ' .Helpers::bytes($downloader->start). '-' .Helpers::bytes($downloader->end). '; ';
+		$data .= 'progress (con: ' .round($file->transferredBytes/$downloader->end*100). '% X ';
+		$data .= 'file: ' .round($downloader->position/$file->sourceFileSize*100). '%)';
 	}
 	$log[] = $data;
 	$cache[$tid] = $log;

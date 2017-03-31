@@ -38,12 +38,20 @@
  */
 
 
-define("APP_DIR", dirname(__FILE__));
-require_once "../load.php"; // Loads nette
+define('APP_DIR', __DIR__);
+require_once __DIR__ . '/../load.php'; // Loads nette
 
 
 use FileDownloader\FileDownload;
 
-FileDownload::getInstance()
-	->setSourceFile("source.txt")
-	->download();
+$downloader = new \FileDownloader\Downloader\AdvancedDownloader();
+
+$request = \Nette\Environment::getHttpRequest();
+$response = \Nette\Environment::getHttpResponse();
+
+$downloader->download(
+	new FileDownload('source.txt'),
+	$request,
+	$response
+);
+

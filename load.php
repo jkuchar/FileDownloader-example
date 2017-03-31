@@ -37,10 +37,10 @@
  * @version    $Id$
  */
 
-require_once __DIR__."/vendor/autoload.php";
+require_once __DIR__. '/vendor/autoload.php';
 
-define("TEMP_DIR", APP_DIR."/cache");
-date_default_timezone_set("Europe/Prague");
+define('TEMP_DIR', APP_DIR. '/cache');
+date_default_timezone_set('Europe/Prague');
 
 //$loader = new Nette\Loaders\RobotLoader();
 //$loader->addDirectory(APP_DIR);
@@ -49,8 +49,8 @@ date_default_timezone_set("Europe/Prague");
 //$loader->register();
 
 
-\Nette\Diagnostics\Debugger::enable(\Nette\Diagnostics\Debugger::DEVELOPMENT, APP_DIR."/log");
+\Tracy\Debugger::enable(\Nette\Diagnostics\Debugger::DEVELOPMENT, APP_DIR . '/log');
 
 
 
-Nette\Environment::getHttpResponse()->setContentType("text/html", "UTF-8");
+Nette\Environment::getHttpResponse()->setContentType('text/html', 'UTF-8');
