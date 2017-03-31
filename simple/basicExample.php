@@ -38,12 +38,12 @@
  */
 
 
-define("APP_DIR", dirname(__FILE__));
-require_once __DIR__ . "/../load.php"; // Loads nette
+define('APP_DIR', dirname(__FILE__));
+require_once __DIR__ . '/../load.php'; // Loads nette
 
 
 use FileDownloader\FileDownload;
 
 FileDownload::getInstance()
-	->setSourceFile("source.txt")
+	->setSourceFile('source.txt')
 	->download();

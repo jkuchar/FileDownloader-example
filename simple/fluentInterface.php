@@ -38,15 +38,15 @@
  */
 
 
-define("APP_DIR",dirname(__FILE__));
+define('APP_DIR',dirname(__FILE__));
 
-require_once "../load.php";
+require_once '../load.php';
 
 use FileDownloader\FDTools;
 use FileDownloader\FileDownload;
 
 FileDownload::getInstance()
-	->setSourceFile("source.txt")
+	->setSourceFile('source.txt')
 	->setSpeedLimit(15*FDTools::BYTE)
 //    ->setTransferFileName("test.txt")
 //    ->setMimeType("plain/text")

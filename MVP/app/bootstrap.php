@@ -16,7 +16,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 // Step 2: Configure environment
 // 2a) enable Nette\Debug for better exception and error visualisation
-\Nette\Diagnostics\Debugger::enable(\Nette\Diagnostics\Debugger::DEVELOPMENT, APP_DIR."/log");
+\Nette\Diagnostics\Debugger::enable(\Nette\Diagnostics\Debugger::DEVELOPMENT, APP_DIR. '/log');
 
 // 2b) load configuration from config.ini file
 //Nette\Environment::loadConfig();

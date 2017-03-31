@@ -38,16 +38,16 @@
  */
 
 
-define("APP_DIR",dirname(__FILE__));
+define('APP_DIR',dirname(__FILE__));
 
-require_once "../load.php";
+require_once '../load.php';
 
 use FileDownloader\FDTools;
 use FileDownloader\FileDownload;
 
 /* Interface with getters and setters */
 $file = new FileDownload;
-$file->sourceFile = "source.txt";
+$file->sourceFile = 'source.txt';
 $file->speedLimit = 5*FDTools::BYTE;
 
 //$file->transferFileName = "test.txt";
