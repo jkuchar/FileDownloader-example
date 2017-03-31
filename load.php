@@ -49,7 +49,7 @@ date_default_timezone_set("Europe/Prague");
 //$loader->register();
 
 
-\Nette\Diagnostics\Debugger::enable(\Nette\Diagnostics\Debugger::DEVELOPMENT, APP_DIR."/log");
+\Tracy\Debugger::enable(\Nette\Diagnostics\Debugger::DEVELOPMENT, APP_DIR . "/log");
 
 
 

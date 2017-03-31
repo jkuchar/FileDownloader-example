@@ -39,7 +39,7 @@
 
 
 define("APP_DIR", dirname(__FILE__));
-require_once "../load.php"; // Loads nette
+require_once __DIR__ . "/../load.php"; // Loads nette
 
 
 use FileDownloader\FileDownload;
