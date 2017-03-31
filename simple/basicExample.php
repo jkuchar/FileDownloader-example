@@ -38,7 +38,7 @@
  */
 
 
-define('APP_DIR', dirname(__FILE__));
+define('APP_DIR', __DIR__);
 require_once __DIR__ . '/../load.php'; // Loads nette
 
 

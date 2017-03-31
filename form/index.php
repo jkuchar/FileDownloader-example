@@ -38,7 +38,7 @@
  */
 
 
-define('APP_DIR',dirname(__FILE__));
+define('APP_DIR', __DIR__);
 
 require_once '../load.php';
 require_once 'example_library.php';
@@ -111,7 +111,7 @@ $f->setDefaults(array(
 if($f->isSubmitted() and $f->isValid()) {
 	Debugger::enable(Debugger::PRODUCTION); // Log errors to file!
 	$val = $f->getValues();
-	$location = dirname(__FILE__). '/cache/test-' .$val['size']. 'MB.tmp';
+	$location = __DIR__ . '/cache/test-' .$val['size']. 'MB.tmp';
 	if(!file_exists($location)) generateFile($location, $val['size']*1024);
 
 	/* Interface with getters and setters */
